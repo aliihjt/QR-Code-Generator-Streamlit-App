@@ -18,8 +18,11 @@ if data:
 
     # Convert image to BytesIO
     buf = BytesIO()
-    img.save(buf)
+    img.save(buf, format="PNG")  # Ensure the image is saved in PNG format
     buf.seek(0)
 
-    st.image(img, caption="Generated QR Code", use_column_width=False)
+    # Display image with updated parameter
+    st.image(buf, caption="Generated QR Code", use_container_width=True)
+
+    # Add download button
     st.download_button("⬇️ Download QR Code", buf, file_name="qr.png", mime="image/png")
